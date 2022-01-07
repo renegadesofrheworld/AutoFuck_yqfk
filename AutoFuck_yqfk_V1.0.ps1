@@ -9,6 +9,9 @@ $PHPSESSIDrespond=Invoke-WebRequest -UseBasicParsing -Uri "https://cas.dgut.edu.
 -Headers @{
 "Upgrade-Insecure-Requests"="1"
   "Accept"="text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
+  "Sec-Fetch-Site"="same-site"
+  "Sec-Fetch-Mode"="navigate"
+  "Sec-Fetch-Dest"="document"
   "sec-ch-ua"="`" Not A;Brand`";v=`"99`", `"Chromium`";v=`"96`", `"Microsoft Edge`";v=`"96`""
   "sec-ch-ua-mobile"="?0"
   "sec-ch-ua-platform"="`"Windows`""
@@ -427,8 +430,8 @@ return $s
 }
 
 
-$submitdata= (replaceHex2Int $submitdata)-replace '\\/','/'
-<#$submitdata = ((replaceChar $submitdata) -replace '\\/','/')#>
+<#$submitdata= (replaceHex2Int $submitdata)-replace '\\/','/'#>
+$submitdata = ((replaceChar $submitdata) -replace '\\/','/')
 #$submitdata=ConvertTo-Json $submitdata
 echo $submitdata 
 <#----------------发送数据-------------#>
